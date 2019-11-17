@@ -24,7 +24,7 @@ And then
 Unfortunately the implementation part of the article has significant flaws which could have been avoided. For example the notion of Areas doesn't belong to domain. Hence it should be avoided in the solution structure.
 Instead of trying to critisize the articte in attempts to find the best solution structure let me describe by approach. In the past years I have applied it quite often. The approach is very well tested on many successful projects of smal and medium projects. It has no problems scaling to big projects.
 
-###  The FOSS approach in short
+###  The feature oriented structure of solution essentials
  + All domain knowledge and all related code should be put into single file hierarchy. 
  + Only terms from domain can be used for folder names.  
  + If you have duplicate names in folder names they should be considered for re-structure of some kind to eliminate. 
