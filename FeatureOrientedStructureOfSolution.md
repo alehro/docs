@@ -1,49 +1,30 @@
-# Feature oriented structure of solution
+# Feature oriented structure of solution (FOS)
 
-*I apologize in advance for the messy article structure. Though I have tried to apply some principles of structuring knowledge I advocate for: using trees and tree flattening*
+*I apologize in advance for the messy article structure and amount of brackets. Though I have tried to apply some principles of structuring knowledge I advocate for: using trees and tree flattening*
 
-## Table of contents
+## Introduction, or just to start from something
 
-+ [Programming is all about sort and search. Or can you trust your collegue to sort socks?](part1.md) 
-
-    More to read: Algorithms to live by - The Computer Science of Human Decisions - Brian Christian
-
-+ [And nobody found that out before you? You cannot be so genius. No way.](part2.md) 
-
-    Reference: Microsoft article, https://msdn.microsoft.com/en-us/magazine/mt763233.aspx?f=255&MSPPError=-2147217396
-
-+ [Coupling, cohesion, DRY...](part3.md)
-
-+ [Do not tell me about your experience. I am experienced too! Oh, I am offended!](part5.md)
-
-    More to read: How to Measure Anything - Finding the Value of Intangibles in Business, 3rd Edition
-                My life and work, Henry Ford 
-
-+ [Oh, now you dare to make estimations! Unbelievable!]()
-
-    Minimum 20%. Maximum 100%, 200%? Difference between success or failure.
-
-+ [The happy end or just beginning. Reward for patient reader.](part6.md)
-
-
-## Introduction
-
- Usually real life projects are big and cluttered. What is even worse they often structured not according to business requirements. They often structured as hello world projects where files are grouped by technical aspects (you know: Controllers, Views,...). The problem is that when the project grows this structure starts working against you. The bigger the project the bigger the part of time you spend on navigation in a mess. These all is very well described in MSDN article: https://msdn.microsoft.com/en-us/magazine/mt763233.aspx?f=255&MSPPError=-2147217396
-
-Note regarding the article. 
+ Usually real life projects are big and cluttered. What is even worse they often structured not according to business requirements. They often structured as hello world projects where files are grouped by technical aspects (you know: Controllers, Views,...). The problem is that when the project grows this structure starts working against you. You find out that you don't care about technical terms. All you need is well structured domain knowledge - the very thing which is missing. The bigger the project becomes the bigger the part of time you spend on navigation in a mess...  
+ The idea is not new. For example it is quite well described in MSDN article: https://msdn.microsoft.com/en-us/magazine/mt763233.aspx?f=255&MSPPError=-2147217396 
 
 The article is absolutely correct in theory. The analogy about organizing computer files is perfect.
-"To see what I mean, imagine if you organized your computer files in this same structure. Instead of having separate folders for different projects or kinds of work, you had only directories organized solely by what kinds of files. There might be folders for Text Documents, PDFs, Images and Spreadsheets. When working on a particular task that involves multiple document types, you would need to keep bouncing between the different folders and scrolling or searching through the many files in each folder that are unrelated to the task at hand. This is exactly how you work on features within an MVC app organized in the default fashion."
+>"To see what I mean, imagine if you organized your computer files in this same structure. Instead of having separate folders for different projects or kinds of work, you had only directories organized solely by what kinds of files. There might be folders for Text Documents, PDFs, Images and Spreadsheets. When working on a particular task that involves multiple document types, you would need to keep bouncing between the different folders and scrolling or searching through the many files in each folder that are unrelated to the task at hand. This is exactly how you work on features within an MVC app organized in the default fashion."  
+
 And then
-"The reason this is an issue is that groups of files organized by type, rather than purpose, tend to lack cohesion. Cohesion refers to the degree to which elements of one module belong together..."
+>"The reason this is an issue is that groups of files organized by type, rather than purpose, tend to lack cohesion. Cohesion refers to the degree to which elements of one module belong together..."
 
-The article still has quite a lot clutter in the implementation part. I have never tried the Areas feature because I work usually with Angular + Web API projects. So, I do not have .cshtml files and do not need related routing setup. Let us describe perfect case. The case when I have full freedom and which results in Feature Oriented Structure (FOS) of project folders. In the past years this happened quite often, so perfect doesn't mean purely theoretical and not tested. In fact the approach is very well tested on many successful projects. What I do in perfect case. I make single file hierarchy. This implies that essentially I put everything into single Visual Studio ASP.Net project. This is of cource not possible if you split domain into separate project. Such splitting leads to duplicating of many folders. Unfortunately collegues usually don't end up with two projects. They do have separate project for POCOs and for Services. These already amounts to 3 projects. The folder structure gets tripled. Actually the structure gets quadrupled because collugues usually keep controllers in separate Controllers hierarchy and views in another one (JS/TS and html files. Thanks gods they learned to not separate those files too ). At this point as project grows happen two bad things. 
-1. People stop making folders when it is needed. Dev thinks: "Why bother if the structure is already a mess. To be correct I will need to make 4 copies of that folder. And well, this is quite a lot of clatter. The tree will grow a lot. *(Author: Seeng such trees I usually imagine bush. Yeah, and what you prefer finding something in bushes or on tree. I prefer tree.)* I put it to that pile. Every professional dev knows how to open files fast, right? The amazing "Ctrl+.". So, if somebody doesn't know then it is his problems. Actually I hope most doesn't know - they will work slower than me. Hah!! This is of course exagragation. Usually having the quadrupled structure devs just abandon any its maintanance because it is just a pain.
-2. Navigation becames more and more painful. When new dev comes to the project *(This happens in our company more and more often. In average I see new projects once in about 3 months and almost every time I need to work with new people)* the first thing he needs is for get familiar with basic notions of domain. Would we have FOS on the project he could do that just by looking at the single root folders structure. But we don't have it. So, trying to understand something from folders structure is very unproductive. Features are reflected in folders names quite occasionally. Often they are not reflected. Often they are intermingled with uselless technical clutter like: Controller, View, Modules, Domain...
+The article still has quite a lot clutter in the implementation part. For example the notion of Areas doesn't belong to domain. Hence it should be avoided in the solution structure.
+Instead of trying to critisize the articte in attempts to find the best solution structure let me describe by approach. I call this approach as Feature Oriented Structure (FOS) of business project folders (solution). In the past years I have applied it quite often. The approach is very well tested on many successful projects. 
 
-## Details
+###  The FOS approach in short
+ All domain knowledge should be put into single file hierarchy. Only terms from domain can be used for folders. If you have duplicate names in folder names they should be considered for re-structure of some kind to eliminate. Synonyms in names of folders and files should be considered as duplicates.
 
-### Why having 3 projects is bad from the point of sort and search.
+### Traditional oriented structuring (TOS)
+Usually solutions are structure traditionall. The domain is being split onto several separate projects. Such splitting leads to duplicating of many folders. Usually there will be separate project for POCOs and for Services. These already amounts to 3 projects. At this stage the folder structure is already gets tripled. The structure is actually quadrupled because collugues usually keep controllers in separate Controllers hierarchy and Views in another one *(JS/TS and html files. Thanks gods they learned to not separate those files too)*. At this point as project grows happen two bad things. 
+1. People stop making folders when it is needed. Dev thinks: "Why bother if the structure is already a mess. To be correct I will need to make 4 copies of that folder. And well, this is quite a lot of clatter. The tree will grow a lot. *(Author: Seeng such trees I usually imagine bush. Yeah, and what you prefer finding something in bushes or on tree. I prefer tree.)* So, instead I put this the new file to that pile. Every professional dev knows how to open files fast, right? The amazing "Ctrl+.". So, if somebody doesn't know then it is his problems. Actually I hope most doesn't know - they will work slower than me. Hah!! This is of course exagragation. Usually having the quadrupled structure devs just abandon any its maintanance because it is just a pain.
+2. Navigation becames more and more painful. When new dev comes to the project the first thing he needs is to get familiar with basic notions of domain. Would we have FOS on the project he could do that just by looking at the single root folders structure. But we don't have it. So, trying to understand something from folders structure is very unproductive. Features are reflected in folders names quite occasionally. Often they are not reflected. Often they are intermingled with uselless technical clutter like: Controller, View, Modules, Domain...
+
+### Why having 3 projects in solution is bad from the point of sort and search.
 *I am considering traditional structure (TOS) comparing to FOS. And I am presuming that the traditional developer to be perfect. He is so disciplined that he will maintain the same amount of domain details in the structure as I would do in FOS. So, if we take N as amount of domaint terms we wont to incorporate into the tree, then it will be the same for both TOS and FOS*
 
 3 projects mean amount of folders multiplied by 3 *(comparing to single root - FOS approach)*. When we work on solution our eyes and brain do two operations again and again. These operations are sort and search. When we add new file *(possibly creating new folders)* we do sort. When we need to open some file or just browse to understand realtionsheeps we do search.
