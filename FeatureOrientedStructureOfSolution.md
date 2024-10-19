@@ -13,7 +13,9 @@ In such solutions the domain is being split onto several separate projects. Such
 
 I suggest to use different structure of folders in solution. I call it Domain Driven Structure of Solution (DDSS).
  
- Idea of structuring files according to features (domain) is not new. One example of implementation of the idea is quite well described in MSDN article: https://msdn.microsoft.com/en-us/magazine/mt763233.aspx?f=255&MSPPError=-2147217396. Update: Unfortunately the link is outdated, but you may dowload the magazine for September 2016 and read the article "Feature Slices". Also, there is even better article explaining also misunderstandings of Clean Architecture regarding project structure: https://medium.com/@stevebishop_89684/clean-architecture-is-not-a-project-structure-b158c9c4163f
+ Idea of structuring files according to features (domain) is not new. One example of implementation of the idea is quite well described in MSDN article: https://msdn.microsoft.com/en-us/magazine/mt763233.aspx?f=255&MSPPError=-2147217396. 
+ Update: Unfortunately the link is outdated, but you may dowload the magazine for September 2016 and read the article "Feature Slices". 
+ There is even better article explaining not only good structure but also misunderstandings of Uncle Bob's "Clean Architecture" regarding project structure: https://medium.com/@stevebishop_89684/clean-architecture-is-not-a-project-structure-b158c9c4163f
 
 I adore theorethical part of the article. The analogy about organizing computer files is perfect.
 >"To see what I mean, imagine if you organized your computer files in this same structure. Instead of having separate folders for different projects or kinds of work, you had only directories organized solely by what kinds of files. There might be folders for Text Documents, PDFs, Images and Spreadsheets. When working on a particular task that involves multiple document types, you would need to keep bouncing between the different folders and scrolling or searching through the many files in each folder that are unrelated to the task at hand. This is exactly how you work on features within an MVC app organized in the default fashion."  
